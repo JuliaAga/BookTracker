@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Publisher</title>
+</head>
+<body>
+<h1>Publishers List</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+    </tr>
+    <tr th:each="publisher : ${publishers}">
+        <td th:text="${publisher.name}">123</td>
+        <td th:text="${publisher.addressLine1}"> addressline</td>
+        <td th:text="${publisher.city}">city</td>
+        <td th:text="${publisher.state}">state</td>
+        <td th:text="${publisher.zip}">zip</td>
+    </tr>
+
+</table>
+<br/>
+<br/>
+
+<form th:method="POST" th:action="@{/publishers}" th:object="${newPublisher}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="addressLine1">Enter addressLine1: </label>
+    <input type="text" th:field="*{addressLine1}" id="addressLine1"/>
+    <br/>
+    <label for="city">Enter city: </label>
+    <input type="text" th:field="*{city}" id="city"/>
+
+    <label for="state">Enter state: </label>
+    <input type="text" th:field="*{state}" id="state"/>
+
+    <label for="zip">Enter zip: </label>
+    <input type="text" th:field="*{zip}" id="zip"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+</body>
+</html>

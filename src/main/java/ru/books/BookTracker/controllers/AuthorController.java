@@ -18,21 +18,16 @@ public class AuthorController {
     }
 
     @RequestMapping("/authors")
-    public String getBooks(Model model){
+    public String getBooks(Model model) {
 
         model.addAttribute("authors", authorRepository.findAll());
-
+        model.addAttribute("newAuthor", new Author());
         return "authors/list";
     }
 
-    @GetMapping("/new_authors")
-    public String newPerson(@ModelAttribute("author") Author author) {
-        return "authors/new";
-    }
-
     @PostMapping("/authors")
-    public String create(@ModelAttribute("author") Author author) {
-        authorRepository.save(author);
+    public String create(@ModelAttribute("newAuthor") Author newAuthor) {
+        authorRepository.save(newAuthor);
         return "redirect:/authors";
     }
 }

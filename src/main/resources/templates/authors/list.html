@@ -17,9 +17,16 @@
         <td th:text="${author.lastName}"> 456 </td>
     </tr>
 </table>
+<br/>
 
-<a href="/new_authors">Create new author</a>
-
+<form th:method="POST" th:action="@{/authors}" th:object="${newAuthor}">
+    <label for="firstName">Enter first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <label for="lastName">Enter last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
 
 </body>
 </html>
