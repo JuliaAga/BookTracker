@@ -24,10 +24,18 @@
 <form th:method="POST" th:action="@{/books}" th:object="${newBook}">
     <label for="title">Enter title: </label>
     <input type="text" th:field="*{title}" id="title"/>
-    <label for="publisher.name">Enter publisher name: </label>
-    <input type="text" th:field="*{publisher.name}" id="publisher.name"/>
+
+    <select th:field="*{publisher}">
+    <option th:each="publisher : ${publishers}"
+            th:value="${publisher}"
+            th:text="${publisher.name}">Wireframe</option>
+    </select>
+
+
     <br/>
     <input type="submit" value="Create!"/>
 </form>
+
+
 </body>
 </html>

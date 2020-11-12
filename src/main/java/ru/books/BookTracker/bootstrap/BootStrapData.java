@@ -9,6 +9,9 @@ import ru.books.BookTracker.repositories.AuthorRepository;
 import ru.books.BookTracker.repositories.BookRepository;
 import ru.books.BookTracker.repositories.PublisherRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -33,6 +36,13 @@ public class BootStrapData implements CommandLineRunner {
         publisher.setState("FL");
 
         publisherRepository.save(publisher);
+
+        Publisher publisher2 = new Publisher();
+        publisher2.setName("Milka");
+        publisher2.setCity("Some town");
+        publisher2.setState("SM");
+
+        publisherRepository.save(publisher2);
 
         System.out.println("Publisher Count: " + publisherRepository.count());
 
@@ -62,5 +72,6 @@ public class BootStrapData implements CommandLineRunner {
 
         System.out.println("Number of Books: " + bookRepository.count());
         System.out.println("Publisher Number of Books: " + publisher.getBooks().size());
+
     }
 }

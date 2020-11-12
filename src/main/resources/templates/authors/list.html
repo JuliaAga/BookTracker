@@ -11,14 +11,16 @@
     <tr>
         <th>First Name</th>
         <th>Last Name</th>
+         <th>Edit</th>
     </tr>
     <tr th:each="author : ${authors}">
         <td th:text="${author.firstName}"> 123 </td>
         <td th:text="${author.lastName}"> 456 </td>
+        <td> <a th:href="@{/authors/edit/{id}(id=${author.getId()})}">Edit</a></td>
     </tr>
 </table>
 <br/>
-
+<h2>Add new author</h2>
 <form th:method="POST" th:action="@{/authors}" th:object="${newAuthor}">
     <label for="firstName">Enter first name: </label>
     <input type="text" th:field="*{firstName}" id="firstName"/>

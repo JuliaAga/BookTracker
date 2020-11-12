@@ -7,21 +7,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.books.BookTracker.domain.Author;
 import ru.books.BookTracker.domain.Book;
+import ru.books.BookTracker.repositories.AuthorRepository;
 import ru.books.BookTracker.repositories.BookRepository;
+import ru.books.BookTracker.repositories.PublisherRepository;
 
 @Controller
 public class BookController {
 
     private final BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
+    private final AuthorRepository authorRepository;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, PublisherRepository publisherRepository,
+                          AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
+        this.publisherRepository = publisherRepository;
+        this.authorRepository = authorRepository;
     }
 
     @RequestMapping("/books")
     public String getBooks(Model model){
 
         model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("publishers", publisherRepository.findAll());
+        model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("newBook", new Book());
 
         return "books/list";
