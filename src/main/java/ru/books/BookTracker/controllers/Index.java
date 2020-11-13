@@ -10,4 +10,5 @@ public class Index {
     public String getStartPage(Model model){
         return "index";
     }
+
 }

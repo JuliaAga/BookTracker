@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form th:method="PATCH" th:action="@{/authors}" th:object="${author}">
+<form th:method="POST" th:action="@{/authors/edit/{id}(id=${author.getId()})}" th:object="${author}">
     <label for="firstName">Enter first name: </label>
     <input type="text" th:field="*{firstName}" id="firstName"/>
     <label for="lastName">Enter last name: </label>

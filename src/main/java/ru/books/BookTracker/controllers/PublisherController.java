@@ -4,8 +4,10 @@ import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAu
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.books.BookTracker.domain.Author;
 import ru.books.BookTracker.domain.Book;
 import ru.books.BookTracker.domain.Publisher;
 import ru.books.BookTracker.repositories.PublisherRepository;
@@ -28,6 +30,18 @@ public class PublisherController {
     @PostMapping("/publishers")
     public String create(@ModelAttribute("newPublisher") Publisher newPublisher) {
         publisherRepository.save(newPublisher);
+        return "redirect:/publishers";
+    }
+
+    @RequestMapping("/publishers/edit/{id}")
+    public String editPublisher(Model model, @PathVariable("id") int id) {
+        model.addAttribute("publisher", publisherRepository.findById((long) id).get());
+        return "publishers/edit";
+    }
+
+    @PostMapping("/publishers/edit/{id}")
+    public String update(@ModelAttribute("publisher") Publisher publisher) {
+        publisherRepository.save(publisher);
         return "redirect:/publishers";
     }
 

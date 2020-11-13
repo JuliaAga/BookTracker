@@ -14,6 +14,7 @@
         <th>City</th>
         <th>State</th>
         <th>Zip</th>
+        <th>Edit</th>
     </tr>
     <tr th:each="publisher : ${publishers}">
         <td th:text="${publisher.name}">123</td>
@@ -21,6 +22,7 @@
         <td th:text="${publisher.city}">city</td>
         <td th:text="${publisher.state}">state</td>
         <td th:text="${publisher.zip}">zip</td>
+        <td> <a th:href="@{/publishers/edit/{id}(id=${publisher.getId()})}">Edit</a></td>
     </tr>
 
 </table>

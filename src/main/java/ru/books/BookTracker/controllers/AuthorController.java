@@ -32,17 +32,13 @@ public class AuthorController {
 
     @RequestMapping("/authors/edit/{id}")
     public String editAuthor(Model model, @PathVariable("id") int id) {
-
-        model.addAttribute("author", authorRepository.findById((long) id));
-
+        model.addAttribute("author", authorRepository.findById((long) id).get());
         return "authors/edit";
     }
 
-    @PatchMapping("/authors")
+    @PostMapping("/authors/edit/{id}")
     public String update(@ModelAttribute("author") Author author) {
-
         authorRepository.save(author);
-
         return "redirect:/authors";
     }
 }

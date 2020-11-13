@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit publisher</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/publishers/edit/{id}(id=${publisher.getId()})}" th:object="${publisher}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <label for="addressLine1">Enter address line: </label>
+    <input type="text" th:field="*{addressLine1}" id="addressLine1"/>
+    <br/>
+    <label for="city">Enter city: </label>
+    <input type="text" th:field="*{city}" id="city"/>
+    <label for="state">Enter state: </label>
+    <input type="text" th:field="*{state}" id="state"/>
+    <label for="zip">Enter zip: </label>
+    <input type="text" th:field="*{zip}" id="zip"/>
+    <br/>
+    <input type="submit" value="Update!"/>
+</form>
+</body>
+</html>
