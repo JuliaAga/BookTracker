@@ -41,4 +41,10 @@ public class AuthorController {
         authorRepository.save(author);
         return "redirect:/authors";
     }
+
+    @RequestMapping("/authors/{id}/delete")
+    public String delete(@PathVariable("id") int id) {
+        authorRepository.deleteById((long) id);
+        return "redirect:/authors";
+    }
 }
