@@ -21,6 +21,7 @@ public class AuthorController {
 
         model.addAttribute("authors", authorRepository.findAll());
         model.addAttribute("newAuthor", new Author());
+        model.addAttribute("filter", "");
         return "authors/list";
     }
 
@@ -28,6 +29,14 @@ public class AuthorController {
     public String create(@ModelAttribute("newAuthor") Author newAuthor) {
         authorRepository.save(newAuthor);
         return "redirect:/authors";
+    }
+
+    @PostMapping("/authors/filter")
+    public String filter(@RequestParam String filter, Model model) {
+        model.addAttribute("authors", authorRepository.findByLastNameLike(filter));
+        model.addAttribute("newAuthor", new Author());
+        model.addAttribute("filter", "");
+        return "authors/list";
     }
 
     @RequestMapping("/authors/edit/{id}")

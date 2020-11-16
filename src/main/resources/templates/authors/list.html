@@ -5,8 +5,25 @@
     <title>Authors</title>
 </head>
 <body>
-<h1>Author List</h1>
+<h1> Authors </h1>
 
+<h2>Add new author</h2>
+<form th:method="POST" th:action="@{/authors}" th:object="${newAuthor}">
+    <label for="firstName">Enter first name: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <label for="lastName">Enter last name: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <br/>
+    <input type="submit" value="Create!"/>
+</form>
+<h2>Search author</h2>
+    <form th:method="POST" th:action="@{/authors/filter}">
+    <input type="text" th:value = "${filter}" name ="filter"/>
+    <br/>
+    <input type="submit" value="Search"/>
+</form>
+
+<h2>Author List</h2>
 <table>
     <tr>
         <th>First Name</th>
@@ -22,15 +39,7 @@
     </tr>
 </table>
 <br/>
-<h2>Add new author</h2>
-<form th:method="POST" th:action="@{/authors}" th:object="${newAuthor}">
-    <label for="firstName">Enter first name: </label>
-    <input type="text" th:field="*{firstName}" id="firstName"/>
-    <label for="lastName">Enter last name: </label>
-    <input type="text" th:field="*{lastName}" id="lastName"/>
-    <br/>
-    <input type="submit" value="Create!"/>
-</form>
+
 
 </body>
 </html>
