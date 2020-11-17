@@ -33,7 +33,7 @@ public class AuthorController {
 
     @PostMapping("/authors/filter")
     public String filter(@RequestParam String filter, Model model) {
-        model.addAttribute("authors", authorRepository.findByLastNameLike(filter));
+        model.addAttribute("authors", authorRepository.findByLastNameIgnoreCaseLike(filter));
         model.addAttribute("newAuthor", new Author());
         model.addAttribute("filter", "");
         return "authors/list";

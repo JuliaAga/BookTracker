@@ -6,5 +6,5 @@ import ru.books.BookTracker.domain.Author;
 import java.util.List;
 
 public interface AuthorRepository extends CrudRepository<Author, Long> {
-    List<Author> findByLastNameLike (String lastName);
+    List<Author> findByLastNameIgnoreCaseLike (String lastName);
 }

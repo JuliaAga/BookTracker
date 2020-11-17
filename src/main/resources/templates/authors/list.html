@@ -16,12 +16,13 @@
     <br/>
     <input type="submit" value="Create!"/>
 </form>
-<h2>Search author</h2>
+<h3>Search author by last name</h3>
     <form th:method="POST" th:action="@{/authors/filter}">
     <input type="text" th:value = "${filter}" name ="filter"/>
     <br/>
     <input type="submit" value="Search"/>
 </form>
+<a th:href="@{/authors}"> Clear filter </a>
 
 <h2>Author List</h2>
 <table>

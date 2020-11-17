@@ -22,16 +22,14 @@
 <br/>
 
 <form th:method="POST" th:action="@{/books}" th:object="${newBook}">
+    <label for="isbn">Enter isbn: </label>
+    <input type="text" th:field="*{isbn}" id="isbn"/>
     <label for="title">Enter title: </label>
     <input type="text" th:field="*{title}" id="title"/>
 
-    <select th:field="*{publisher}">
-    <option th:each="publisher : ${publishers}"
-            th:value="${publisher}"
-            th:text="${publisher.name}">Wireframe</option>
-    </select>
-
-
+        <select th:field="*{publisher}" class="form-control">
+            <option th:each="publisher: ${publishers}" th:value="${publisher.id}" th:text="${publisher.name}"></option>
+        </select>
     <br/>
     <input type="submit" value="Create!"/>
 </form>

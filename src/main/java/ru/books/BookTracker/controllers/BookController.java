@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.books.BookTracker.domain.Author;
 import ru.books.BookTracker.domain.Book;
+import ru.books.BookTracker.domain.Publisher;
 import ru.books.BookTracker.repositories.AuthorRepository;
 import ru.books.BookTracker.repositories.BookRepository;
 import ru.books.BookTracker.repositories.PublisherRepository;
+
+import java.util.HashSet;
 
 @Controller
 public class BookController {
@@ -26,7 +29,7 @@ public class BookController {
     }
 
     @RequestMapping("/books")
-    public String getBooks(Model model){
+    public String getBooks(Model model) {
 
         model.addAttribute("books", bookRepository.findAll());
         model.addAttribute("publishers", publisherRepository.findAll());
@@ -38,7 +41,7 @@ public class BookController {
 
     @PostMapping("/books")
     public String create(@ModelAttribute("newBook") Book newBook) {
-        bookRepository.save(newBook);
+          bookRepository.save(newBook);
         return "redirect:/books";
     }
 }
