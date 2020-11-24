@@ -3,6 +3,7 @@ package ru.books.BookTracker.controllers;
 import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import ru.books.BookTracker.domain.Author;
 import ru.books.BookTracker.domain.Book;
 import ru.books.BookTracker.domain.Publisher;
 import ru.books.BookTracker.repositories.PublisherRepository;
+
+import javax.validation.Valid;
 
 @Controller
 public class PublisherController {
@@ -21,14 +24,17 @@ public class PublisherController {
     }
 
     @RequestMapping("/publishers")
-    public String getPublishers(Model model){
+    public String getPublishers(Model model, Publisher newPublisher ){
         model.addAttribute("publishers", publisherRepository.findAll());
         model.addAttribute("newPublisher", new Publisher());
         return "publishers/list";
     }
 
     @PostMapping("/publishers")
-    public String create(@ModelAttribute("newPublisher") Publisher newPublisher) {
+    public String create(@ModelAttribute("newPublisher") @Valid Publisher newPublisher, BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "publishers/list";
+
         publisherRepository.save(newPublisher);
         return "redirect:/publishers";
     }

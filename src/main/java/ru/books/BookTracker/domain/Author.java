@@ -1,5 +1,7 @@
 package ru.books.BookTracker.domain;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +12,12 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotEmpty (message ="First name can't be empty")
+    @Size(min=2, message="Too short")
     private String firstName;
+
+    @NotEmpty (message ="Last name can't be empty")
+    @Size(min=2, message="Too short")
     private String lastName;
 
     @ManyToMany(mappedBy = "authors")

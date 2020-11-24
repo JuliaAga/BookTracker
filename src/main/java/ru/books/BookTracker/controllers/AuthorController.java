@@ -2,10 +2,12 @@ package ru.books.BookTracker.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.books.BookTracker.domain.Author;
 import ru.books.BookTracker.repositories.AuthorRepository;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -26,7 +28,10 @@ public class AuthorController {
     }
 
     @PostMapping("/authors")
-    public String create(@ModelAttribute("newAuthor") Author newAuthor) {
+    public String create(@ModelAttribute("newAuthor") @Valid Author newAuthor, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "authors/list";
+
         authorRepository.save(newAuthor);
         return "redirect:/authors";
     }
